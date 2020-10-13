@@ -91,7 +91,7 @@ deploy automatization using `gitlab runners` implemented. `.gitlab-ci.yml` can b
 
 ## user manual
 
-* login as `guest/guest1` at [flask-reactjs-template](https://flask-reactjs-template.m2m-tele.com/)
+* login as `guest/guest1`  at [flask-reactjs-template](https://flask-reactjs-template.m2m-tele.com/)
 * run `docker-compose up` from root folder of project and access `http://localhost:8887/` using browser. Use `guest/guest1` credentials to login.
 * to run without docker: `make ui-install && make ui-build && flask run`. But you must setup correct environment variables shown in `database.conf` file to access your local **postgresql** database.
 
