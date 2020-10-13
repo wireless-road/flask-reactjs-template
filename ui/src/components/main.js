@@ -9,6 +9,7 @@ import { doSetPosts } from "../actions/api";
 import {useDispatch, useSelector} from "react-redux";
 import MainWindow from "./MainWindow";
 import {useHistory} from "react-router-dom";
+import {doLogin} from "../actions/authentication";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +38,7 @@ const Main = ({posts}) => {
         ) {
 
         const bearer_access_header = 'Bearer ' + /*store.getState().authenticationState*/authState.access_token;
+        const bearer_refresh_header = 'Bearer ' + /*store.getState().authenticationState*/authState.refresh_token;
         fetch(routesConstants.POSTS_GET_ALL, {
                 method: 'GET',
                 headers: { 'Authorization': bearer_access_header },
@@ -48,6 +50,29 @@ const Main = ({posts}) => {
                             "payload": responce["message"],
                             "state": routesConstants.POSTS_GET_ALL
                         }));
+                    } else if( responce["msg"] === "Token has expired" ) {
+                        console.log("responce expired")
+
+
+                        fetch(routesConstants.REFRESH_TOKEN, {
+                                method: 'POST',
+                                headers: { 'Authorization': bearer_refresh_header },
+                            }).then( response => response.json() )
+                                .then(responce => {
+                                    if(responce["status"] === restAPIconstants.RESPONCE_OK) {
+
+                                        dispatch(doLogin({
+                                            "username": responce["username"],
+                                            "access_token": responce["access_token"],
+                                            "refresh_token": authState.refresh_token,
+                                            "state": authenticationConstants.LOGIN_SUCCESS
+                                        }))
+                                        history.push(routesConstants.MAIN)
+
+                                    }
+                                })
+
+
 
                     }
                 })
