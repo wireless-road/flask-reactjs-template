@@ -16,7 +16,7 @@ services:
     env_file: database.conf
     depends_on:
       - database
-    command: ["./wait-for-it.sh", "database", "./entrypoint.sh"]
+    command: ["./wait-for-it.sh", "database", "--", "./entrypoint.sh"]
     links:
       - database
     ports:
