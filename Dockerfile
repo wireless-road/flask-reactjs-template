@@ -12,6 +12,7 @@ RUN \
 COPY . /template
 WORKDIR /template
 
+RUN cat wait-for-it.sh
 RUN make ui-requirements
 RUN make ui-build
 
