@@ -1,0 +1,23 @@
+version: "3"
+services:
+  database:
+    container_name: template_db
+    image: postgres:latest
+    env_file: database.conf
+    ports:
+      - 5432:5432
+    volumes:
+      - /home/al/docker/flask/postgres:/var/lib/postgresql
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: template_app
+    env_file: database.conf
+    depends_on:
+      - database
+    command: ["./wait-for-it.sh", "database:5432", "--", "./entrypoint.sh"]
+    links:
+      - database
+    ports:
+      - "127.0.0.1:8888:5000"
