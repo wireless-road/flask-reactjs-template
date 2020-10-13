@@ -15,6 +15,7 @@ WORKDIR /template
 RUN make ui-requirements
 RUN make ui-build
 
+RUN chmod +x wait-for-it.sh
 RUN chmod +x entrypoint.sh
 
 
