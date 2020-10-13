@@ -14,4 +14,5 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_SECRET_KEY = os.environ['JWT_SECRET_KEY']
     JWT_BLACKLIST_ENABLED = os.environ['JWT_BLACKLIST_ENABLED']
-    JWT_BLACKLIST_TOKEN_CHECKS = json.loads(os.environ['JWT_BLACKLIST_TOKEN_CHECKS'])
+    # JWT_BLACKLIST_TOKEN_CHECKS = json.loads(os.environ['JWT_BLACKLIST_TOKEN_CHECKS'])
+    JWT_BLACKLIST_TOKEN_CHECKS = ["access", "refresh"]
