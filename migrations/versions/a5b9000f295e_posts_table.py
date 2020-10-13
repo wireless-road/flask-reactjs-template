@@ -116,11 +116,10 @@ def upgrade():
                        {
                            'id': 9,
                            'title': 'user manual',
-                           'body': '## user manual\n\n* login as `guest/guest1` at [flask-reactjs-template](https://flask-reactjs-template.m2m-tele.com/)\n * run `docker-compose up` from root folder of project and access `http://localhost:8888/` using browser. '
+                           'body': '## user manual\n\n* login as `guest/guest1` at [flask-reactjs-template](https://flask-reactjs-template.m2m-tele.com/)\n * run `docker-compose up` from root folder of project and access `http://localhost:8887/` using browser. '
                                    'Use `guest/guest1` credentials to login.\n'
                                    '* to run without docker: `make ui-install && make ui-build && flask run`. But you must setup correct environment variables '
-                                   'shown in `database.conf` file to access your local **postgresql** database.\n'
-                                   '* to register new user you can use curl example from `curl_examples.txt` file.\n',
+                                   'shown in `database.conf` file to access your local **postgresql** database.\n',
                            'user_id': 1
                        },
                        {

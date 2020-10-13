@@ -81,3 +81,20 @@ deploy automatization using `gitlab runners` implemented. `.gitlab-ci.yml` can b
 * **/static_** - contains prebuilt frontend SPA page generated using `make ui-build` command. Not necessary to put it under git control. Did it just for quick launching without installed js/node programms.
 * **Dockerfile**, **docker-compose.yml**, **entrypoint.sh**, **Makefile**, **wait-for-it.sh** used for deploying using docker containers.
 * **requirements.txt** - contains list of used python packets. Similar for fronted can be found in **/ui/package.json**.
+
+## to-do
+
+* implement failed requests handling.
+* add registration UI form to implement email verification based users registration.
+* add `GraphQL` or `Swagger` to simplify syncronization between backend and frontend during API development.
+* add `react native` template to this project that uses same source base with existing reactJS project and compatible with existing backend and database schema as starting point on mobile application development.
+
+## user manual
+
+* login as `guest/guest1` at [flask-reactjs-template](https://flask-reactjs-template.m2m-tele.com/)
+* run `docker-compose up` from root folder of project and access `http://localhost:8887/` using browser. Use `guest/guest1` credentials to login.
+* to run without docker: `make ui-install && make ui-build && flask run`. But you must setup correct environment variables shown in `database.conf` file to access your local **postgresql** database.
+
+## security
+
+Don't place `database.conf` file under git version control. Find another way to deliver environment variables to `production` and `development` machines.
