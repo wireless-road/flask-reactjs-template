@@ -72,3 +72,12 @@ used technologies:
 
 ## ci/cd
 deploy automatization using `gitlab runners` implemented. `.gitlab-ci.yml` can be found in root folder of project.
+
+## project structure
+
+* **application.py** is entrypoint for flask backend. All backend related sources placed in **/app** folder.
+* **/migrations** - folder used by `flask db` to migrate database. In a case of any future database changes dont forget to run `flask db migrate` to register changes in db. try to divide changes in db to small logically separated chunks like you do it on merge requests using git.
+* **/ui** - contains ReactJS based Frontend UI project.
+* **/static_** - contains prebuilt frontend SPA page generated using `make ui-build` command. Not necessary to put it under git control. Did it just for quick launching without installed js/node programms.
+* **Dockerfile**, **docker-compose.yml**, **entrypoint.sh**, **Makefile**, **wait-for-it.sh** used for deploying using docker containers.
+* **requirements.txt** - contains list of used python packets. Similar for fronted can be found in **/ui/package.json**.

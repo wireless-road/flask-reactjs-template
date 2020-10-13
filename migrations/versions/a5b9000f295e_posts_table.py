@@ -97,7 +97,8 @@ def upgrade():
                                    'dont forget to make related changes using `flask db migrate` to register changes in db.'
                                    'try to divide changes in db to small logically separated chunks like you do it on merge requests using git.\n'
                                    '- **/ui** - contains ReactJS based Frontend UI project.\n'
-                                   '- **/static_** - contains prebuilt frontend SPA page generated using `make ui-build` command.\n'
+                                   '- **/static_** - contains prebuilt frontend SPA page generated using `make ui-build` command. '
+                                   'Not necessary to put it under git control. Did it just for quick launching without installed js/node programms.\n'
                                    '- **Dockerfile**, **docker-compose.yml**, **entrypoint.sh**, **Makefile**, **wait-for-it.sh** used for deploying using docker containers.\n'
                                    '- **requirements.txt** - contains list of used python packets. Similar for fronted can be found in **/ui/package.json**.\n',
                            'user_id': 1
@@ -105,8 +106,8 @@ def upgrade():
                        {
                            'id': 8,
                            'title': 'to-do',
-                           'body': '## to-do\n\n* implement failed requests handling.\n'
-                                   '* add registration UI form to implement email verification based users registration.\n'
+                           'body': '## to-do\n\n'
+                                   '* add email validation on registration process.\n'
                                    '* add `GraphQL` or `Swagger` to simplify syncronization between backend and frontend during API development. \n'
                                    '* add `react native` template to this project that uses same source base with existing reactJS project and'
                                    'compatible with existing backend and database schema as starting point on mobile application development.\n',
@@ -115,7 +116,7 @@ def upgrade():
                        {
                            'id': 9,
                            'title': 'user manual',
-                           'body': '## user manual\n\n* run `docker-compose up` from root folder of project and access `http://localhost:8888/` using browser. '
+                           'body': '## user manual\n\n* login as `guest/guest1` at [flask-reactjs-template](https://flask-reactjs-template.m2m-tele.com/)\n * run `docker-compose up` from root folder of project and access `http://localhost:8888/` using browser. '
                                    'Use `guest/guest1` credentials to login.\n'
                                    '* to run without docker: `make ui-install && make ui-build && flask run`. But you must setup correct environment variables '
                                    'shown in `database.conf` file to access your local **postgresql** database.\n'
