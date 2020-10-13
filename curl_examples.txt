@@ -1,0 +1,17 @@
+# create user
+curl -d '{"username":"al2", "password":"92ezetiv", "email":"almaz_1@mail.ru"}' -H "Content-Type: application/json" -X POST http://localhost:5000/registration
+
+# login
+curl -d '{"username":"al2", "password":"92ezetiv"}' -H "Content-Type: application/json" -X POST http://localhost:5000/login
+
+# secret page request
+curl -H "Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDI0MTk0NzQsIm5iZiI6MTYwMjQxOTQ3NCwianRpIjoiOTAzMTg3Y2YtNTM2Ni00ZDc1LWEyOGEtMTgwNmM3YjM0NDcwIiwiZXhwIjoxNjAyNDIwMzc0LCJpZGVudGl0eSI6ImFsMiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.d9aQguyzWh0tZotDZ2TMv-rQRLEWF9mbaLusUHq7rMI" -X GET http://localhost:5000/secret
+
+# refresh token
+curl -H "Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDI0MjIzMzMsIm5iZiI6MTYwMjQyMjMzMywianRpIjoiNmE5NWFkYjUtZjZlOS00YjBhLWE1YTktMDU3MDA0N2RhMGU1IiwiZXhwIjoxNjA1MDE0MzMzLCJpZGVudGl0eSI6ImFsMiIsInR5cGUiOiJyZWZyZXNoIn0.rKGhvqrF9e_vJ_1M41bh2ashZEZaEXlx_kJ62VcqJB0"  -X POST http://localhost:5000/token/refresh
+
+#revoke access token
+curl -H "Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDI0MjQ2OTgsIm5iZiI6MTYwMjQyNDY5OCwianRpIjoiZDMyMWY3YzUtNTZkZS00MjdlLTkwOGQtNTNlMTQ0MzJmOGJmIiwiZXhwIjoxNjAyNDI1NTk4LCJpZGVudGl0eSI6ImFsMiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.Sx-KvLip54MMpwF7qo2FuunWL6PbNjabuUOe2Rt5XJo" -X POST http://localhost:5000/logout/access
+
+#revoke refresh token
+curl -H "Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDI0MjUwNzQsIm5iZiI6MTYwMjQyNTA3NCwianRpIjoiMzUzMzhiNjQtMzQ3NC00Nzg5LWJmZWUtZmEzNDA0M2M2NGYyIiwiZXhwIjoxNjA1MDE3MDc0LCJpZGVudGl0eSI6ImFsMiIsInR5cGUiOiJyZWZyZXNoIn0.R9v2ndES8lQRQIFRbMtw5_ksVgj-9ivs2KrdxwtiAU8"  -X POST http://localhost:5000/logout/refresh

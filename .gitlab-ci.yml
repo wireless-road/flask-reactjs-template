@@ -1,0 +1,13 @@
+before_script:
+  - docker info
+
+build_image:
+  script:
+  - docker stop template_app || true
+  - docker rm template_app || true
+  - docker rmi flask-reactjs-template_app:latest || true
+  - docker-compose up -d
+  tags:
+  - loraserver
+  only:
+  - master
