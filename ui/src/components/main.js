@@ -5,7 +5,7 @@ import {routesConstants} from "../constants/routes.constants";
 import {restAPIconstants} from "../constants/restAPI.constants";
 import {makeStyles} from "@material-ui/core/styles";
 import {authenticationConstants} from "../constants/authentication.constants";
-import { doSetPosts } from "../actions/api";
+import {doSetPosts, doSetS7Baggages} from "../actions/api";
 import {useDispatch, useSelector} from "react-redux";
 import MainWindow from "./MainWindow";
 import {useHistory} from "react-router-dom";
@@ -19,12 +19,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Main = ({posts}) => {
+const Main = ({posts, s7}) => {
 
     const classes = useStyles();
    	const history = useHistory();
     const authState = useSelector( state => state.authenticationState );
     const postState = useSelector( state => state.postState.state );
+    const s7State = useSelector( state => state.s7State.state );
     const dispatch = useDispatch();
 
     console.log("Main render");
@@ -39,6 +40,23 @@ const Main = ({posts}) => {
 
         const bearer_access_header = 'Bearer ' + /*store.getState().authenticationState*/authState.access_token;
         const bearer_refresh_header = 'Bearer ' + /*store.getState().authenticationState*/authState.refresh_token;
+
+        fetch(routesConstants.S7_BAGGAGES_GET_ALL + '/?' + new URLSearchParams({order: '345345ae6345', last_name: 'Ivanov'}), {
+                method: 'GET',
+                headers: { 'Authorization': bearer_access_header },
+            }).then( response => response.json() )
+                .then(responce => {
+                    if(responce["status"] === restAPIconstants.RESPONCE_OK) {
+
+                        dispatch(doSetS7Baggages({
+                            "payload": responce["message"],
+                            "state": routesConstants.S7_BAGGAGES_GET_ALL
+                        }));
+                    } else {
+                        console.log("unable to request baggages")
+                    }
+                })
+
         fetch(routesConstants.POSTS_GET_ALL, {
                 method: 'GET',
                 headers: { 'Authorization': bearer_access_header },
@@ -90,6 +108,7 @@ const Main = ({posts}) => {
 
 const mapStateToProps = state => ({
     posts: state.postState,
+    s7: state.s7state
 });
 
 export default Main;

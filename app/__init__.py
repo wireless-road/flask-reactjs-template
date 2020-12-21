@@ -32,5 +32,6 @@ api.add_resource(resources.TokenRefresh, '/auth/token/refresh')
 api.add_resource(resources.AllUsers, '/users')
 api.add_resource(resources.SecretResource, '/secret')
 api.add_resource(resources.ApiGetPosts, '/api/posts')
+api.add_resource(resources.ApiGetBaggages, '/api/s7/baggages/')
 
 api.init_app(app)
