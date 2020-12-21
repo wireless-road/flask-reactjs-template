@@ -7,5 +7,7 @@ export const routesConstants = {
     LOGOUT_ACCESS_TOKEN:    '/auth/logout/access',
     LOGOUT_REFRESH_TOKEN:   '/auth/logout/refresh',
 
-    POSTS_GET_ALL: '/api/posts'
+    POSTS_GET_ALL: '/api/posts',
+
+    S7_BAGGAGES_GET_ALL: '/api/s7/baggages'
 }

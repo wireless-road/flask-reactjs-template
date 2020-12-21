@@ -47,6 +47,12 @@ const SideList = () => {
 const SideNav = ({posts}) => {
     const classes = useStyles();
 
+    const dispatch = useDispatch();
+
+    const handleClick = () => {
+        dispatch(doSelectPost(100));
+    }
+
     return (
             <Drawer variant="permanent" className={classes.drawer} classes={{paper: classes.drawerPaper}}>
                 <Toolbar />
@@ -63,7 +69,14 @@ const SideNav = ({posts}) => {
                         </List>
                         <Divider />
                        <SideList posts={posts}/>
-                    </div>
+                        <Divider />
+                        <List>
+                            <ListItem button key="task" onClick={() => handleClick()}>
+                                <ListItemIcon> <MailIcon /> </ListItemIcon>
+                                <ListItemText primary="Task"/>
+                            </ListItem>
+                        </List>
+                   </div>
             </Drawer>
     );
 };

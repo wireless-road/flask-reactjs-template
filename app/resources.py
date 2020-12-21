@@ -1,5 +1,5 @@
-from flask_restful import Resource, reqparse
-from app.models import Userr, Post, RevokedTokenModel
+from flask_restful import Resource, reqparse, request
+from app.models import Userr, Post, RevokedTokenModel, FlightBaggage
 from email_validator import validate_email, EmailNotValidError
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, \
     get_jwt_identity, get_raw_jwt
@@ -159,3 +159,23 @@ class ApiGetPosts(Resource):
                 'message': result,
                 'status': 'Success'
             }
+
+class ApiGetBaggages(Resource):
+    @jwt_required
+    def get(self):
+        username = get_jwt_identity()
+        order = request.args.get('order', None)
+        last_name = request.args.get('last_name', None)
+        if order and last_name:
+            result = FlightBaggage.get_all_baggages(order=order, last_name=last_name)
+            return {
+                    'user': str(username),
+                    'message': result,
+                    'status': 'Success'
+                }
+        else:
+            return {
+                    'user': str(username),
+                    'message': 'order number or last_name not provided',
+                    'status': 'Failure'
+                }
